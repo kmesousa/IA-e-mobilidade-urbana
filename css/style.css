@@ -1,0 +1,423 @@
+/* ==========================
+   CONFIGURAÇÕES GERAIS
+========================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    color:#222;
+    background:#f5f5f5;
+}
+
+/* ==========================
+   HEADER
+========================== */
+
+header{
+    background:#6d9fe8;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:20px 8%;
+    position:sticky;
+    top:0;
+    z-index:1000;
+}
+
+.logo h2{
+    color:#111;
+    font-size:28px;
+}
+
+nav ul{
+    display:flex;
+    list-style:none;
+    gap:30px;
+}
+
+nav a{
+    text-decoration:none;
+    color:#111;
+    font-weight:bold;
+    transition:.3s;
+}
+
+nav a:hover{
+    color:white;
+}
+
+/* ==========================
+   HERO
+========================== */
+
+.hero{
+
+    background:white;
+
+    min-height:80vh;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    text-align:center;
+
+    padding:80px 10%;
+
+}
+
+.hero-conteudo{
+
+    max-width:900px;
+
+}
+
+.hero h1{
+
+    font-size:65px;
+
+    margin-bottom:30px;
+
+    font-weight:900;
+
+}
+
+.hero p{
+
+    font-size:22px;
+
+    color:#555;
+
+    line-height:1.8;
+
+}
+
+.botoes{
+
+    margin-top:40px;
+
+}
+
+.botao-preto,
+.botao-branco{
+
+    display:inline-block;
+
+    padding:16px 35px;
+
+    margin:10px;
+
+    border-radius:8px;
+
+    text-decoration:none;
+
+    font-weight:bold;
+
+    transition:.3s;
+
+}
+
+.botao-preto{
+
+    background:#111;
+
+    color:white;
+
+}
+
+.botao-preto:hover{
+
+    background:#333;
+
+}
+
+.botao-branco{
+
+    border:2px solid #111;
+
+    color:#111;
+
+}
+
+.botao-branco:hover{
+
+    background:#111;
+
+    color:white;
+
+}
+
+/* ==========================
+   SMART CITIES
+========================== */
+
+.smart-cities{
+
+    background: #dff5e3;
+
+    padding:80px 8%;
+
+}
+
+.subtitulo{
+
+    text-transform:uppercase;
+
+    color:#6b4f35;
+
+    letter-spacing:2px;
+
+    margin-bottom:10px;
+
+    font-weight:bold;
+
+}
+
+.smart-cities h2{
+
+    font-size:48px;
+
+    margin-bottom:50px;
+
+}
+
+.conteudo-smart{
+
+    display:flex;
+
+    gap:60px;
+
+    align-items:center;
+
+    flex-wrap:wrap;
+
+}
+
+.imagem-smart{
+
+    flex:1;
+
+}
+
+.imagem-smart img{
+
+    width:100%;
+
+    border-radius:12px;
+
+}
+
+.texto-smart{
+
+    flex:1;
+
+}
+
+.texto-smart h3{
+
+    margin-top:20px;
+
+    margin-bottom:15px;
+
+    font-size:30px;
+
+}
+
+.texto-smart p{
+
+    line-height:1.9;
+
+    font-size:20px;
+
+}
+
+/* ==========================
+   CARDS
+========================== */
+
+.cards{
+
+    background:white;
+
+    padding:80px 8%;
+
+}
+
+.cards h2{
+
+    margin-bottom:50px;
+
+    font-size:40px;
+
+}
+
+.container-cards{
+
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:35px;
+
+}
+
+.card{
+
+    background:white;
+
+    border-radius:12px;
+
+    overflow:hidden;
+
+    box-shadow:0 8px 25px rgba(0,0,0,.12);
+
+    transition:.35s;
+
+}
+
+.card:hover{
+
+    transform:translateY(-10px);
+
+}
+
+.card img{
+
+    width:100%;
+
+    height:230px;
+
+    object-fit:cover;
+
+}
+
+.card-texto{
+
+    padding:25px;
+
+}
+
+.card-texto h3{
+
+    font-size:30px;
+
+    margin-bottom:20px;
+
+}
+
+.card-texto p{
+
+    line-height:1.7;
+
+    margin-bottom:25px;
+
+}
+
+.card-texto a{
+
+    text-decoration:none;
+
+    font-weight:bold;
+
+    color:#0b63ce;
+
+}
+
+.card-texto a:hover{
+
+    text-decoration:underline;
+
+}
+
+/* ==========================
+   FOOTER
+========================== */
+
+footer{
+
+    background:#6d9fe8;
+
+    text-align:center;
+
+    padding:40px;
+
+}
+
+footer h3{
+
+    margin-bottom:15px;
+
+}
+
+footer p{
+
+    margin:10px;
+
+}
+
+footer a{
+
+    color:black;
+
+    font-weight:bold;
+
+}
+
+/* ==========================
+   RESPONSIVIDADE
+========================== */
+
+@media(max-width:1000px){
+
+    header{
+
+        flex-direction:column;
+
+        gap:20px;
+
+    }
+
+    nav ul{
+
+        flex-wrap:wrap;
+
+        justify-content:center;
+
+    }
+
+    .hero h1{
+
+        font-size:45px;
+
+    }
+
+    .hero p{
+
+        font-size:18px;
+
+    }
+
+    .conteudo-smart{
+
+        flex-direction:column;
+
+    }
+
+    .container-cards{
+
+        grid-template-columns:1fr;
+
+    }
+
+}
