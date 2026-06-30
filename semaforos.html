@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Semáforos Inteligentes</title>
+
+<style>
+
+/* ==========================
+   CONFIGURAÇÕES GERAIS
+========================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    color:#222;
+    background:#f5f5f5;
+}
+
+/* ==========================
+   HEADER
+========================== */
+
+header{
+    background:#6d9fe8;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:20px 8%;
+    position:sticky;
+    top:0;
+    z-index:1000;
+}
+
+.logo h2{
+    color:#111;
+    font-size:28px;
+}
+
+nav ul{
+    display:flex;
+    list-style:none;
+    gap:30px;
+}
+
+nav a{
+    text-decoration:none;
+    color:#111;
+    font-weight:bold;
+    transition:.3s;
+}
+
+nav a:hover{
+    color:white;
+}
+
+/* ==========================
+   HERO SEMÁFOROS
+========================== */
+
+.hero-semaforos{
+    background:linear-gradient(135deg, #ffffff 60%, #dff5e3 40%);
+    min-height:75vh;
+    display:flex;
+    align-items:center;
+    padding:80px 8%;
+}
+
+.hero-container{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:50px;
+    align-items:center;
+    width:100%;
+}
+
+.hero-texto h1{
+    font-size:58px;
+    line-height:1.1;
+    margin-bottom:25px;
+    font-weight:900;
+}
+
+.hero-texto p{
+    font-size:21px;
+    color:#555;
+    line-height:1.8;
+    max-width:750px;
+}
+
+.painel-semaforo{
+    background:#111;
+    padding:40px;
+    border-radius:18px;
+    box-shadow:0 10px 30px rgba(0,0,0,.18);
+    color:white;
+    text-align:center;
+}
+
+.painel-semaforo h2{
+    font-size:34px;
+    margin-bottom:25px;
+}
+
+.luzes{
+    display:flex;
+    justify-content:center;
+    gap:25px;
+    margin-bottom:25px;
+}
+
+.luz{
+    width:65px;
+    height:65px;
+    border-radius:50%;
+}
+
+.vermelho{
+    background:#ff3b3b;
+}
+
+.amarelo{
+    background:#ffd43b;
+}
+
+.verde{
+    background:#36d66b;
+}
+
+.painel-semaforo p{
+    color:#e8e8e8;
+    font-size:18px;
+    line-height:1.7;
+}
+
+.botoes{
+    margin-top:35px;
+}
+
+.botao-preto,
+.botao-branco{
+    display:inline-block;
+    padding:16px 35px;
+    margin:10px 10px 10px 0;
+    border-radius:8px;
+    text-decoration:none;
+    font-weight:bold;
+    transition:.3s;
+}
+
+.botao-preto{
+    background:#111;
+    color:white;
+}
+
+.botao-preto:hover{
+    background:#333;
+}
+
+.botao-branco{
+    border:2px solid #111;
+    color:#111;
+}
+
+.botao-branco:hover{
+    background:#111;
+    color:white;
+}
+
+/* ==========================
+   O QUE SÃO
+========================== */
+
+.sobre-semaforos{
+    background:#dff5e3;
+    padding:80px 8%;
+}
+
+.subtitulo{
+    text-transform:uppercase;
+    color:#6b4f35;
+    letter-spacing:2px;
+    margin-bottom:10px;
+    font-weight:bold;
+}
+
+.sobre-semaforos h2{
+    font-size:45px;
+    margin-bottom:35px;
+}
+
+.texto-grande{
+    max-width:1000px;
+}
+
+.texto-grande p{
+    font-size:20px;
+    line-height:1.9;
+    color:#333;
+    text-align:justify;
+}
+
+/* ==========================
+   FUNCIONAMENTO
+========================== */
+
+.funcionamento{
+    background:white;
+    padding:80px 8%;
+}
+
+.funcionamento h2{
+    font-size:42px;
+    margin-bottom:50px;
+}
+
+.linha-funcionamento{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:25px;
+}
+
+.etapa{
+    background:#f5f5f5;
+    padding:30px;
+    border-radius:14px;
+    border-top:6px solid #6d9fe8;
+    transition:.3s;
+}
+
+.etapa:hover{
+    transform:translateY(-8px);
+    box-shadow:0 8px 22px rgba(0,0,0,.12);
+}
+
+.numero{
+    width:45px;
+    height:45px;
+    background:#111;
+    color:white;
+    border-radius:50%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-weight:bold;
+    margin-bottom:20px;
+}
+
+.etapa h3{
+    font-size:24px;
+    margin-bottom:15px;
+}
+
+.etapa p{
+    line-height:1.7;
+    color:#555;
+}
+
+/* ==========================
+   IA E SEMÁFOROS
+========================== */
+
+.ia-semaforos{
+    background:#f5f5f5;
+    padding:80px 8%;
+}
+
+.conteudo-ia{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:50px;
+    align-items:center;
+}
+
+.bloco-ia{
+    background:white;
+    padding:40px;
+    border-radius:16px;
+    box-shadow:0 8px 25px rgba(0,0,0,.10);
+}
+
+.bloco-ia h2{
+    font-size:40px;
+    margin-bottom:25px;
+}
+
+.bloco-ia p{
+    font-size:19px;
+    line-height:1.9;
+    color:#555;
+    text-align:justify;
+}
+
+.lista-ia{
+    background:#111;
+    color:white;
+    padding:40px;
+    border-radius:16px;
+}
+
+.lista-ia h3{
+    font-size:32px;
+    margin-bottom:25px;
+}
+
+.lista-ia ul{
+    list-style:none;
+}
+
+.lista-ia li{
+    font-size:18px;
+    margin-bottom:18px;
+    line-height:1.6;
+}
+
+.lista-ia li::before{
+    content:"✔ ";
+    color:#6d9fe8;
+    font-weight:bold;
+}
+
+/* ==========================
+   EXEMPLOS
+========================== */
+
+.exemplos{
+    background:white;
+    padding:80px 8%;
+}
+
+.exemplos h2{
+    font-size:42px;
+    margin-bottom:45px;
+}
+
+.container-exemplos{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:30px;
+}
+
+.card-exemplo{
+    background:#dff5e3;
+    padding:35px;
+    border-radius:14px;
+    transition:.3s;
+}
+
+.card-exemplo:hover{
+    transform:scale(1.03);
+}
+
+.card-exemplo h3{
+    font-size:28px;
+    margin-bottom:18px;
+}
+
+.card-exemplo p{
+    font-size:17px;
+    line-height:1.8;
+    color:#444;
+    text-align:justify;
+}
+
+/* ==========================
+   DESAFIOS
+========================== */
+
+.desafios{
+    background:#111;
+    color:white;
+    padding:80px 8%;
+}
+
+.desafios h2{
+    font-size:42px;
+    margin-bottom:40px;
+    text-align:center;
+}
+
+.lista-desafios{
+    max-width:900px;
+    margin:auto;
+    background:white;
+    color:#222;
+    padding:40px;
+    border-radius:16px;
+}
+
+.lista-desafios ul{
+    margin-left:20px;
+    line-height:2;
+    font-size:18px;
+}
+
+.lista-desafios li{
+    margin-bottom:8px;
+}
+
+/* ==========================
+   CONCLUSÃO
+========================== */
+
+.conclusao{
+    background:#dff5e3;
+    padding:80px 8%;
+    text-align:center;
+}
+
+.conclusao h2{
+    font-size:42px;
+    margin-bottom:25px;
+}
+
+.conclusao p{
+    max-width:900px;
+    margin:auto;
+    font-size:20px;
+    line-height:1.8;
+    color:#333;
+}
+
+/* ==========================
+   FOOTER
+========================== */
+
+footer{
+    background:#6d9fe8;
+    text-align:center;
+    padding:40px;
+}
+
+footer h3{
+    margin-bottom:15px;
+}
+
+footer p{
+    margin:10px;
+}
+
+footer a{
+    color:black;
+    font-weight:bold;
+}
+
+/* ==========================
+   RESPONSIVIDADE
+========================== */
+
+@media(max-width:1000px){
+
+    header{
+        flex-direction:column;
+        gap:20px;
+    }
+
+    nav ul{
+        flex-wrap:wrap;
+        justify-content:center;
+    }
+
+    .hero-container{
+        grid-template-columns:1fr;
+        text-align:center;
+    }
+
+    .hero-texto h1{
+        font-size:43px;
+    }
+
+    .hero-texto p{
+        font-size:18px;
+    }
+
+    .linha-funcionamento{
+        grid-template-columns:1fr;
+    }
+
+    .conteudo-ia{
+        grid-template-columns:1fr;
+    }
+
+    .container-exemplos{
+        grid-template-columns:1fr;
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<div class="logo">
+    <h2>IA E MOBILIDADE URBANA</h2>
+</div>
+
+<nav>
+    <ul>
+        <li><a href="index.html">Início</a></li>
+        <li><a href="redes.html">Redes Otimizadas</a></li>
+        <li><a href="semaforos.html">Semáforos Inteligentes</a></li>
+        <li><a href="mobilidade.html">Mobilidade Urbana</a></li>
+    </ul>
+</nav>
+
+</header>
+
+<section class="hero-semaforos">
+
+<div class="hero-container">
+
+<div class="hero-texto">
+
+<h1>SEMÁFOROS INTELIGENTES</h1>
+
+<p>
+Os semáforos inteligentes usam tecnologia e Inteligência Artificial para controlar melhor o trânsito nas cidades. Eles analisam o movimento dos veículos em tempo real e ajustam o tempo dos sinais para reduzir filas, atrasos e congestionamentos.
+</p>
+
+<div class="botoes">
+    <a href="#sobre" class="botao-preto">Saiba Mais</a>
+    <a href="index.html" class="botao-branco">Voltar</a>
+</div>
+
+</div>
+
+<div class="painel-semaforo">
+
+<h2>Controle em tempo real</h2>
+
+<div class="luzes">
+    <div class="luz vermelho"></div>
+    <div class="luz amarelo"></div>
+    <div class="luz verde"></div>
+</div>
+
+<p>
+A tecnologia identifica o fluxo de veículos e adapta os sinais de acordo com a necessidade de cada via.
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+<section class="sobre-semaforos" id="sobre">
+
+<p class="subtitulo">Tecnologia no trânsito</p>
+
+<h2>O que são semáforos inteligentes?</h2>
+
+<div class="texto-grande">
+
+<p>
+Semáforos inteligentes são sistemas de sinalização que utilizam sensores, câmeras, softwares e Inteligência Artificial para controlar o trânsito de forma mais eficiente. Diferente dos semáforos tradicionais, que funcionam com tempos fixos, os semáforos inteligentes conseguem adaptar o tempo de abertura e fechamento conforme o movimento real das ruas e avenidas.
+</p>
+
+</div>
+
+</section>
+
+<section class="funcionamento">
+
+<h2>Como eles funcionam?</h2>
+
+<div class="linha-funcionamento">
+
+<div class="etapa">
+<div class="numero">1</div>
+<h3>Coleta de dados</h3>
+<p>
+Sensores e câmeras observam o fluxo de carros, motos, ônibus, bicicletas e pedestres.
+</p>
+</div>
+
+<div class="etapa">
+<div class="numero">2</div>
+<h3>Análise da IA</h3>
+<p>
+A Inteligência Artificial interpreta os dados e identifica onde há mais movimento ou congestionamento.
+</p>
+</div>
+
+<div class="etapa">
+<div class="numero">3</div>
+<h3>Ajuste dos sinais</h3>
+<p>
+O tempo dos semáforos é alterado automaticamente para melhorar o fluxo do trânsito.
+</p>
+</div>
+
+<div class="etapa">
+<div class="numero">4</div>
+<h3>Trânsito melhor</h3>
+<p>
+Com os sinais mais organizados, há menos filas, menos atrasos e maior segurança nas vias.
+</p>
+</div>
+
+</div>
+
+</section>
+
+<section class="ia-semaforos">
+
+<div class="conteudo-ia">
+
+<div class="bloco-ia">
+
+<h2>Por que usar IA nos semáforos?</h2>
+
+<p>
+A Inteligência Artificial ajuda os semáforos a tomar decisões com base na situação real do trânsito. Isso permite que cruzamentos movimentados recebam mais tempo de passagem, enquanto vias com pouco movimento tenham esperas menores. Assim, o sistema se torna mais eficiente e ajuda a reduzir os congestionamentos.
+</p>
+
+</div>
+
+<div class="lista-ia">
+
+<h3>Principais vantagens</h3>
+
+<ul>
+<li>Redução do tempo de espera nos cruzamentos.</li>
+<li>Melhor controle do fluxo de veículos.</li>
+<li>Diminuição dos congestionamentos.</li>
+<li>Economia de combustível.</li>
+<li>Menor emissão de gases poluentes.</li>
+<li>Mais segurança para pedestres e motoristas.</li>
+</ul>
+
+</div>
+
+</div>
+
+</section>
+
+<section class="exemplos">
+
+<h2>Exemplos no Brasil</h2>
+
+<div class="container-exemplos">
+
+<div class="card-exemplo">
+<h3>São Paulo</h3>
+<p>
+A cidade possui corredores monitorados por centrais de trânsito que acompanham o fluxo de veículos e auxiliam no controle dos semáforos.
+</p>
+</div>
+
+<div class="card-exemplo">
+<h3>Curitiba</h3>
+<p>
+Curitiba investe em sistemas de sincronização dos sinais para melhorar a circulação dos veículos e tornar o trânsito mais organizado.
+</p>
+</div>
+
+<div class="card-exemplo">
+<h3>Fortaleza</h3>
+<p>
+Fortaleza conta com uma central de gerenciamento semafórico que monitora o trânsito e contribui para decisões mais rápidas nas vias.
+</p>
+</div>
+
+</div>
+
+</section>
+
+<section class="desafios">
+
+<h2>Principais desafios</h2>
+
+<div class="lista-desafios">
+
+<ul>
+<li>Elevado custo de implantação da tecnologia.</li>
+<li>Necessidade de infraestrutura moderna nas cidades.</li>
+<li>Manutenção constante dos equipamentos.</li>
+<li>Integração entre diferentes sistemas municipais.</li>
+<li>Segurança dos dados coletados por sensores e câmeras.</li>
+<li>Capacitação de profissionais para operar o sistema.</li>
+</ul>
+
+</div>
+
+</section>
+
+<section class="conclusao">
+
+<h2>Conclusão</h2>
+
+<p>
+Os semáforos inteligentes mostram como a tecnologia pode melhorar a mobilidade urbana. Com o uso da Inteligência Artificial, as cidades conseguem organizar melhor o trânsito, reduzir congestionamentos e tornar os deslocamentos mais rápidos, seguros e sustentáveis.
+</p>
+
+</section>
+
+<footer>
+
+<h3>Projeto Acadêmico</h3>
+
+<p>Mobilidade Urbana com Inteligência Artificial • 2026</p>
+
+<p>
+<a href="index.html">Voltar para a página inicial</a>
+</p>
+
+</footer>
+
+</body>
+
+</html>
