@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Mobilidade Urbana no Brasil</title>
+
+<style>
+
+/* ==========================
+   CONFIGURAÇÕES GERAIS
+========================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    color:#222;
+    background:#f5f5f5;
+}
+
+/* ==========================
+   HEADER
+========================== */
+
+header{
+    background:#6d9fe8;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:20px 8%;
+    position:sticky;
+    top:0;
+    z-index:1000;
+}
+
+.logo h2{
+    color:#111;
+    font-size:28px;
+}
+
+nav ul{
+    display:flex;
+    list-style:none;
+    gap:30px;
+}
+
+nav a{
+    text-decoration:none;
+    color:#111;
+    font-weight:bold;
+    transition:.3s;
+}
+
+nav a:hover{
+    color:white;
+}
+
+/* ==========================
+   HERO MOBILIDADE
+========================== */
+
+.hero-mobilidade{
+    background:linear-gradient(135deg, #ffffff 55%, #dff5e3 45%);
+    min-height:75vh;
+    display:flex;
+    align-items:center;
+    padding:80px 8%;
+}
+
+.hero-container{
+    display:grid;
+    grid-template-columns:1.2fr .8fr;
+    gap:50px;
+    align-items:center;
+    width:100%;
+}
+
+.hero-texto h1{
+    font-size:58px;
+    line-height:1.1;
+    margin-bottom:25px;
+    font-weight:900;
+}
+
+.hero-texto p{
+    font-size:21px;
+    color:#555;
+    line-height:1.8;
+    max-width:750px;
+}
+
+.caixa-destaque{
+    background:#111;
+    color:white;
+    padding:40px;
+    border-radius:18px;
+    box-shadow:0 10px 30px rgba(0,0,0,.18);
+}
+
+.caixa-destaque h2{
+    font-size:34px;
+    margin-bottom:20px;
+}
+
+.caixa-destaque p{
+    font-size:18px;
+    line-height:1.7;
+    color:#e8e8e8;
+}
+
+.botoes{
+    margin-top:35px;
+}
+
+.botao-preto,
+.botao-branco{
+    display:inline-block;
+    padding:16px 35px;
+    margin:10px 10px 10px 0;
+    border-radius:8px;
+    text-decoration:none;
+    font-weight:bold;
+    transition:.3s;
+}
+
+.botao-preto{
+    background:#111;
+    color:white;
+}
+
+.botao-preto:hover{
+    background:#333;
+}
+
+.botao-branco{
+    border:2px solid #111;
+    color:#111;
+}
+
+.botao-branco:hover{
+    background:#111;
+    color:white;
+}
+
+/* ==========================
+   SOBRE MOBILIDADE
+========================== */
+
+.sobre-mobilidade{
+    background:#dff5e3;
+    padding:80px 8%;
+}
+
+.subtitulo{
+    text-transform:uppercase;
+    color:#6b4f35;
+    letter-spacing:2px;
+    margin-bottom:10px;
+    font-weight:bold;
+}
+
+.sobre-mobilidade h2{
+    font-size:45px;
+    margin-bottom:35px;
+}
+
+.texto-grande{
+    max-width:1000px;
+}
+
+.texto-grande p{
+    font-size:20px;
+    line-height:1.9;
+    color:#333;
+    text-align:justify;
+}
+
+/* ==========================
+   BENEFÍCIOS
+========================== */
+
+.beneficios{
+    background:white;
+    padding:80px 8%;
+}
+
+.beneficios h2{
+    font-size:42px;
+    margin-bottom:50px;
+}
+
+.grid-beneficios{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:25px;
+}
+
+.beneficio{
+    background:#f5f5f5;
+    padding:30px;
+    border-radius:14px;
+    border-left:6px solid #6d9fe8;
+    transition:.3s;
+}
+
+.beneficio:hover{
+    transform:translateY(-8px);
+    box-shadow:0 8px 22px rgba(0,0,0,.12);
+}
+
+.beneficio h3{
+    font-size:25px;
+    margin-bottom:15px;
+}
+
+.beneficio p{
+    line-height:1.7;
+    color:#555;
+}
+
+/* ==========================
+   IA NA MOBILIDADE
+========================== */
+
+.ia-mobilidade{
+    background:#f5f5f5;
+    padding:80px 8%;
+}
+
+.conteudo-ia{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:50px;
+    align-items:center;
+}
+
+.bloco-ia{
+    background:white;
+    padding:40px;
+    border-radius:16px;
+    box-shadow:0 8px 25px rgba(0,0,0,.10);
+}
+
+.bloco-ia h2{
+    font-size:40px;
+    margin-bottom:25px;
+}
+
+.bloco-ia p{
+    font-size:19px;
+    line-height:1.9;
+    color:#555;
+    text-align:justify;
+}
+
+.lista-ia{
+    background:#111;
+    color:white;
+    padding:40px;
+    border-radius:16px;
+}
+
+.lista-ia h3{
+    font-size:32px;
+    margin-bottom:25px;
+}
+
+.lista-ia ul{
+    list-style:none;
+}
+
+.lista-ia li{
+    font-size:18px;
+    margin-bottom:18px;
+    line-height:1.6;
+}
+
+.lista-ia li::before{
+    content:"✔ ";
+    color:#6d9fe8;
+    font-weight:bold;
+}
+
+/* ==========================
+   DESAFIOS
+========================== */
+
+.desafios{
+    background:white;
+    padding:80px 8%;
+}
+
+.desafios h2{
+    font-size:42px;
+    margin-bottom:45px;
+}
+
+.container-desafios{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:30px;
+}
+
+.card-desafio{
+    background:#dff5e3;
+    padding:35px;
+    border-radius:14px;
+    transition:.3s;
+}
+
+.card-desafio:hover{
+    transform:scale(1.03);
+}
+
+.card-desafio h3{
+    font-size:28px;
+    margin-bottom:18px;
+}
+
+.card-desafio p{
+    font-size:17px;
+    line-height:1.8;
+    color:#444;
+    text-align:justify;
+}
+
+/* ==========================
+   CONCLUSÃO
+========================== */
+
+.conclusao{
+    background:#111;
+    color:white;
+    padding:80px 8%;
+    text-align:center;
+}
+
+.conclusao h2{
+    font-size:42px;
+    margin-bottom:25px;
+}
+
+.conclusao p{
+    max-width:900px;
+    margin:auto;
+    font-size:20px;
+    line-height:1.8;
+    color:#e8e8e8;
+}
+
+/* ==========================
+   FOOTER
+========================== */
+
+footer{
+    background:#6d9fe8;
+    text-align:center;
+    padding:40px;
+}
+
+footer h3{
+    margin-bottom:15px;
+}
+
+footer p{
+    margin:10px;
+}
+
+footer a{
+    color:black;
+    font-weight:bold;
+}
+
+/* ==========================
+   RESPONSIVIDADE
+========================== */
+
+@media(max-width:1000px){
+
+    header{
+        flex-direction:column;
+        gap:20px;
+    }
+
+    nav ul{
+        flex-wrap:wrap;
+        justify-content:center;
+    }
+
+    .hero-container{
+        grid-template-columns:1fr;
+        text-align:center;
+    }
+
+    .hero-texto h1{
+        font-size:43px;
+    }
+
+    .hero-texto p{
+        font-size:18px;
+    }
+
+    .grid-beneficios{
+        grid-template-columns:1fr;
+    }
+
+    .conteudo-ia{
+        grid-template-columns:1fr;
+    }
+
+    .container-desafios{
+        grid-template-columns:1fr;
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<div class="logo">
+    <h2>IA E MOBILIDADE URBANA</h2>
+</div>
+
+<nav>
+    <ul>
+        <li><a href="index.html">Início</a></li>
+        <li><a href="redes.html">Redes Otimizadas</a></li>
+        <li><a href="semaforos.html">Semáforos Inteligentes</a></li>
+        <li><a href="mobilidade.html">Mobilidade Urbana</a></li>
+    </ul>
+</nav>
+
+</header>
+
+<section class="hero-mobilidade">
+
+<div class="hero-container">
+
+<div class="hero-texto">
+
+<h1>MOBILIDADE URBANA NO BRASIL</h1>
+
+<p>
+A mobilidade urbana no Brasil é um grande desafio para as cidades, principalmente nos grandes centros urbanos. O crescimento da população, o aumento da quantidade de veículos e os problemas no transporte público tornam necessário buscar soluções mais inteligentes, acessíveis e sustentáveis.
+</p>
+
+<div class="botoes">
+    <a href="#sobre" class="botao-preto">Saiba Mais</a>
+    <a href="index.html" class="botao-branco">Voltar</a>
+</div>
+
+</div>
+
+<div class="caixa-destaque">
+
+<h2>Realidade brasileira</h2>
+
+<p>
+No Brasil, muitas pessoas dependem diariamente de ônibus, metrôs, carros, motos, bicicletas e aplicativos de transporte para estudar, trabalhar e realizar suas atividades.
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+<section class="sobre-mobilidade" id="sobre">
+
+<p class="subtitulo">Conceito principal</p>
+
+<h2>O que é mobilidade urbana no Brasil?</h2>
+
+<div class="texto-grande">
+
+<p>
+Mobilidade urbana no Brasil é a forma como a população se desloca dentro das cidades brasileiras. Ela envolve o funcionamento do transporte público, a qualidade das ruas e avenidas, a presença de calçadas, ciclovias, sinalização, acessibilidade e segurança no trânsito. Em muitas cidades, a mobilidade ainda enfrenta problemas como congestionamentos, transporte lotado, longos tempos de deslocamento e falta de infraestrutura adequada.
+</p>
+
+</div>
+
+</section>
+
+<section class="beneficios">
+
+<h2>O que pode melhorar nas cidades brasileiras?</h2>
+
+<div class="grid-beneficios">
+
+<div class="beneficio">
+<h3>Transporte público</h3>
+<p>
+Investir em ônibus, metrôs e trens mais eficientes ajuda a diminuir a dependência dos carros e melhora a rotina da população.
+</p>
+</div>
+
+<div class="beneficio">
+<h3>Menos trânsito</h3>
+<p>
+Com planejamento urbano e tecnologia, é possível reduzir congestionamentos nas avenidas mais movimentadas.
+</p>
+</div>
+
+<div class="beneficio">
+<h3>Acessibilidade</h3>
+<p>
+Calçadas adequadas, rampas e transporte adaptado são essenciais para garantir o direito de locomoção de todos.
+</p>
+</div>
+
+<div class="beneficio">
+<h3>Sustentabilidade</h3>
+<p>
+O incentivo ao transporte coletivo, bicicletas e caminhadas contribui para reduzir a poluição nas cidades.
+</p>
+</div>
+
+</div>
+
+</section>
+
+<section class="ia-mobilidade">
+
+<div class="conteudo-ia">
+
+<div class="bloco-ia">
+
+<h2>Como a IA pode ajudar no Brasil?</h2>
+
+<p>
+A Inteligência Artificial pode auxiliar as cidades brasileiras a entender melhor o trânsito e o comportamento dos deslocamentos urbanos. Com dados de câmeras, sensores, GPS e aplicativos, a IA pode indicar rotas mais eficientes, prever congestionamentos, melhorar semáforos, organizar linhas de ônibus e apoiar o planejamento do transporte público.
+</p>
+
+</div>
+
+<div class="lista-ia">
+
+<h3>Aplicações no Brasil</h3>
+
+<ul>
+<li>Monitoramento do trânsito em tempo real.</li>
+<li>Controle de semáforos inteligentes.</li>
+<li>Melhoria das rotas de ônibus.</li>
+<li>Identificação de pontos de congestionamento.</li>
+<li>Planejamento de ciclovias e corredores de transporte.</li>
+<li>Apoio à segurança de pedestres e motoristas.</li>
+</ul>
+
+</div>
+
+</div>
+
+</section>
+
+<section class="desafios">
+
+<h2>Principais desafios no Brasil</h2>
+
+<div class="container-desafios">
+
+<div class="card-desafio">
+<h3>Congestionamentos</h3>
+<p>
+Nas grandes cidades brasileiras, muitas pessoas enfrentam horas no trânsito todos os dias, principalmente nos horários de pico.
+</p>
+</div>
+
+<div class="card-desafio">
+<h3>Transporte público</h3>
+<p>
+Em muitos locais, ônibus e metrôs são insuficientes, lotados ou demorados, dificultando o deslocamento da população.
+</p>
+</div>
+
+<div class="card-desafio">
+<h3>Infraestrutura</h3>
+<p>
+A falta de calçadas adequadas, ciclovias, sinalização e acessibilidade ainda é um problema em várias cidades do país.
+</p>
+</div>
+
+</div>
+
+</section>
+
+<section class="conclusao">
+
+<h2>Conclusão</h2>
+
+<p>
+A mobilidade urbana no Brasil precisa de planejamento, investimento e tecnologia. Com o uso da Inteligência Artificial e de políticas públicas eficientes, as cidades brasileiras podem se tornar mais organizadas, acessíveis, sustentáveis e seguras para todos.
+</p>
+
+</section>
+
+<footer>
+
+<h3>Projeto Acadêmico</h3>
+
+<p>Mobilidade Urbana com Inteligência Artificial • 2026</p>
+
+<p>
+<a href="index.html">Voltar para a página inicial</a>
+</p>
+
+</footer>
+
+</body>
+
+</html>
