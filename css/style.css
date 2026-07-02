@@ -77,6 +77,12 @@ nav a:hover{
 
 }
 
+.bg-preto{
+
+    background:black;
+
+}
+
 /* ==========================
    MARGENS
 ========================== */
@@ -123,7 +129,7 @@ nav a:hover{
 }
 
 /* ==========================
-   HERO
+   HERO 1 (INDEX)
 ========================== */
 
 .hero{
@@ -170,6 +176,10 @@ nav a:hover{
 
 }
 
+/* ==========================
+   BOTÕES
+========================== */
+
 .botoes{
 
     margin-top:40px;
@@ -183,7 +193,7 @@ nav a:hover{
 
     padding:16px 35px;
 
-    margin:10px;
+    margin:10px 10px 10px 0;
 
     border-radius:8px;
 
@@ -194,6 +204,7 @@ nav a:hover{
     transition:.3s;
 
 }
+
 
 .botao-preto{
 
@@ -224,6 +235,10 @@ nav a:hover{
     color:white;
 
 }
+
+/* ==========================
+   HERO 2 (SEMAFOROS E MOBILIDADE)
+========================== */
 
 /* ==========================
    SMART CITIES
@@ -697,8 +712,6 @@ footer{
 .footer-col{
 
     flex:1;
-
-}
 
     min-width:220px;
 
